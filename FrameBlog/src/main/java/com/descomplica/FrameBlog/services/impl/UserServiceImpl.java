@@ -1,9 +1,11 @@
 package com.descomplica.FrameBlog.services.impl;
 
+import ch.qos.logback.classic.encoder.JsonEncoder;
 import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User save(final User user) {
         User existingUser = userRepository.findByUsername(user.getUsername());
@@ -22,6 +27,7 @@ public class UserServiceImpl implements UserService {
         if(Objects.nonNull(existingUser)){
             throw new RuntimeException("Existing User");
         }
+        String passwordHash = passwordEncoder.encode(user.getPassword());
 
         User entity = new User(user.getUserId(), user.getName(), user.getEmail(), user.getPassword(), user.getRole(), user.getUsername());
 
@@ -44,6 +50,7 @@ public class UserServiceImpl implements UserService {
     public User update(final Long id, final User user){
         User userUpdate = userRepository.findById(id).orElse(null);
         if(Objects.nonNull(userUpdate)){
+            String passwordHash = passwordEncoder.encode(user.getPassword());
             userUpdate.setName(user.getName());
             userUpdate.setUsername(user.getUsername());
             userUpdate.setEmail(user.getEmail());

@@ -1,4 +1,4 @@
-package com.descomplica.FrameBlog.controllers;
+package com.descomplica.FrameBlog.controllers.v2;
 
 import com.descomplica.FrameBlog.models.UserV2;
 import com.descomplica.FrameBlog.services.UserServiceV2;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/users")
-public class UserController {
+@RequestMapping(path = "/v2/users")
+public class UserControllerV2 {
     @Autowired
     private UserServiceV2 userServiceV2;
 

@@ -22,6 +22,11 @@ public class SpringSecurityAuthentication {
     @Autowired
     private SecurityFilter securityFilter;
 
+    public static final String[] SWAGGER_AUTH_PERMIT_LIST = new String[]{
+            "/api-docs/**",
+            "/swagger-ui/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -29,6 +34,7 @@ public class SpringSecurityAuthentication {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(SWAGGER_AUTH_PERMIT_LIST).permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/save").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/getAll").hasRole("USER")

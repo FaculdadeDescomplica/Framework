@@ -5,6 +5,7 @@ import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(final Long id){
-        return userRepository.findById(id).orElse(null);
+        try {
+            return userRepository.findById(id).orElse(null);
+        } catch (Exception exception) {
+            throw new DataAccessException(exception.getMessage()) {
+            };
+        }
     }
 
     @Override

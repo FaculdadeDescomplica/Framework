@@ -1,7 +1,7 @@
 package com.descomplica.FrameBlog.controllers.v2;
 
-import com.descomplica.FrameBlog.models.UserV2;
-import com.descomplica.FrameBlog.services.UserServiceV2;
+import com.descomplica.FrameBlog.models.v2.UserV2;
+import com.descomplica.FrameBlog.services.v2.UserServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

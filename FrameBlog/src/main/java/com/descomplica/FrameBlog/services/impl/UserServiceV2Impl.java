@@ -1,8 +1,9 @@
 package com.descomplica.FrameBlog.services.impl;
 
-import com.descomplica.FrameBlog.models.UserV2;
+import com.descomplica.FrameBlog.models.v2.UserV2;
 import com.descomplica.FrameBlog.repositories.UserRepository;
-import com.descomplica.FrameBlog.services.UserServiceV2;
+import com.descomplica.FrameBlog.repositories.v2.UserRepositoryV2;
+import com.descomplica.FrameBlog.services.v2.UserServiceV2;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +16,7 @@ import java.util.Objects;
 public class UserServiceV2Impl implements UserServiceV2 {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepositoryV2 userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

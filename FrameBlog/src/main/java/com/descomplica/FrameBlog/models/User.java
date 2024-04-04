@@ -11,28 +11,25 @@ import java.util.List;
 
 @Entity
 @Table(name = "User")
-public class UserV2 implements UserDetails {
-
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     private String name;
     private String email;
+    private String username;
     private String password;
     private RoleEnum role;
-    private String username;
 
-    public UserV2() {
+    public User() {
     }
-
-    public UserV2(final Long userId, final String name, final String email,
-                  final String password, final RoleEnum role, final String username) {
+    public User(final Long userId, final String name, final String email, final String username, final String password, final RoleEnum role) {
         this.userId = userId;
         this.name = name;
         this.email = email;
+        this.username = username;
         this.password = password;
         this.role = role;
-        this.username = username;
     }
 
     public Long getUserId() {
@@ -59,8 +56,8 @@ public class UserV2 implements UserDetails {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -75,14 +72,6 @@ public class UserV2 implements UserDetails {
         this.role = role;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == RoleEnum.ADMIN) {
@@ -94,6 +83,16 @@ public class UserV2 implements UserDetails {
         return List.of(
                 new SimpleGrantedAuthority("ROLE_USER")
         );
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
     @Override

@@ -27,11 +27,11 @@ public class UserServiceV2Impl implements UserServiceV2 {
 
         String passwordHash = passwordEncoder.encode(user.getPassword());
 
-        UserV2 entity = new UserV2(user.getUserId(), user.getName(), user.getEmail(), user.getUsername(), passwordHash, user.getRole());
+        UserV2 entity = new UserV2(user.getUserId(), user.getName(), user.getEmail(), user.getUsername(), user.getRole(), passwordHash);
 
         UserV2 newUser = userRepositoryV2.save(entity);
 
-        return new UserV2(newUser.getUserId(), newUser.getName(), newUser.getEmail(), newUser.getUsername(), newUser.getPassword(), newUser.getRole());
+        return new UserV2(newUser.getUserId(), newUser.getName(), newUser.getEmail(), newUser.getUsername(), newUser.getRole(), newUser.getPassword());
     }
 
     @Override

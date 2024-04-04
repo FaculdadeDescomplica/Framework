@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class UserV2 implements UserDetails {
     }
 
     public UserV2(final Long userId, final String name, final String email,
-                  final String password, final String role, final RoleEnum username) {
+                  final String password, final RoleEnum role, final String username) {
         this.userId = userId;
         this.name = name;
         this.email = email;

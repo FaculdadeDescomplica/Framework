@@ -4,6 +4,7 @@ import ch.qos.logback.classic.encoder.JsonEncoder;
 import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,12 +45,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(final Long id){
-        try {
-            return userRepository.findById(id).orElse(null);
-        } catch (Exception exception) {
-            throw new DataAccessException(exception.getMessage()) {
-            };
-        }
+        return userRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("User not found")
+        );
     }
 
     @Override

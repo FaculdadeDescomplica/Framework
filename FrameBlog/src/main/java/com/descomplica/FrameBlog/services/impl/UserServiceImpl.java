@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         }
         String passwordHash = passwordEncoder.encode(user.getPassword());
 
-        User entity = new User(user.getUserId(), user.getName(), user.getEmail(), user.getPassword(), user.getRole(), user.getUsername());
+        User entity = new User(user.getUserId(), user.getName(), user.getEmail(), passwordHash, user.getRole(), user.getUsername());
 
         User newUser = userRepository.save(entity);
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             userUpdate.setUsername(user.getUsername());
             userUpdate.setEmail(user.getEmail());
             userUpdate.setRole(user.getRole());
-            userUpdate.setPassword(user.getPassword());
+            userUpdate.setPassword(passwordHash);
             return userRepository.save(userUpdate);
         }
         return null;

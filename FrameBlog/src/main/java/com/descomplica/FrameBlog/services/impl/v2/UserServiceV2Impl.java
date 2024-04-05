@@ -6,10 +6,12 @@ import com.descomplica.FrameBlog.services.v2.UserServiceV2;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
+@Service
 public class UserServiceV2Impl implements UserServiceV2 {
     @Autowired
     private UserRepositoryV2 userRepositoryV2;

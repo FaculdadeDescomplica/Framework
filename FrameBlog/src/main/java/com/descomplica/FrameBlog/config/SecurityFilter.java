@@ -1,6 +1,6 @@
 package com.descomplica.FrameBlog.config;
 
-import com.descomplica.FrameBlog.models.UserV2;
+import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.services.AuthenticationService;
 import jakarta.servlet.FilterChain;
@@ -33,10 +33,10 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         if (token != null) {
             String username = authenticationService.validateJwtToken(token);
-            UserV2 userV2 = userRepository.findByUsername(username);
+            User user = userRepository.findByUsername(username);
 
-            var authenticationToken = new UsernamePasswordAuthenticationToken(userV2,
-                    null, userV2.getAuthorities());
+            var authenticationToken = new UsernamePasswordAuthenticationToken(user,
+                    null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 

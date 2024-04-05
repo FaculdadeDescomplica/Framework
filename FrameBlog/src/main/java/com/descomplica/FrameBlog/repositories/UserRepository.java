@@ -1,12 +1,12 @@
 package com.descomplica.FrameBlog.repositories;
 
-import com.descomplica.FrameBlog.models.UserV2;
+import com.descomplica.FrameBlog.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserV2, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    UserV2 findByUsername(String login);
+    User findByUsername(String login);
 
 }

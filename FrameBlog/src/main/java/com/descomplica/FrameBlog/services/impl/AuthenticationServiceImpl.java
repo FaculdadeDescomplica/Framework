@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.descomplica.FrameBlog.models.UserV2;
+import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.request.AuthRequest;
 import com.descomplica.FrameBlog.services.AuthenticationService;
@@ -29,17 +29,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String getToken(AuthRequest auth){
-        UserV2 userV2 = userRepository.findByUsername(auth.getUsername());
-        return generateToken(userV2);
+        User user = userRepository.findByUsername(auth.getUsername());
+        return generateToken(user);
     }
 
-    public  String generateToken(UserV2 userV2) {
+    public  String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256("my-secret");
 
             return JWT.create()
                     .withIssuer("FrameBlog")
-                    .withSubject(userV2.getUsername())
+                    .withSubject(user.getUsername())
                     .withExpiresAt(getExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception) {

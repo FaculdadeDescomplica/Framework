@@ -14,7 +14,7 @@ public class CommentController {
 
     @PostMapping(path = "/save")
     private @ResponseBody Comment save(@RequestBody Comment comment) {
-        return null;
+        return commentService.send(comment);
     }
 
 }

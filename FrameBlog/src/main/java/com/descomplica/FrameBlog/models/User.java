@@ -1,6 +1,8 @@
 package com.descomplica.FrameBlog.models;
 
+import com.descomplica.FrameBlog.deserializers.CustomAuthorityDeserializer;
 import com.descomplica.FrameBlog.enums.RoleEnum;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -73,6 +75,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == RoleEnum.ADMIN) {
             return List.of(

@@ -5,3 +5,8 @@ https://dev.mysql.com/downloads/workbench/
 https://dev.mysql.com/downloads/mysql/
 
 A senha do My Sql é determinada na configuração!
+
+Service-Registry:
+    Tirar versão da dependência
+
+    

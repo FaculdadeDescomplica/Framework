@@ -7,7 +7,6 @@ import com.descomplica.FrameBlog.repositories.v2.UserRepositoryV2;
 import com.descomplica.FrameBlog.services.v2.AddressServiceV2;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

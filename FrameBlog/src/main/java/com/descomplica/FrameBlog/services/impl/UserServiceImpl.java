@@ -3,9 +3,7 @@ package com.descomplica.FrameBlog.services.impl;
 import com.descomplica.FrameBlog.models.User;
 import com.descomplica.FrameBlog.repositories.UserRepository;
 import com.descomplica.FrameBlog.services.UserService;
-
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

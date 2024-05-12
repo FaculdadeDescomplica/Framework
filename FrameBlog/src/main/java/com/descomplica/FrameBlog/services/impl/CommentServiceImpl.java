@@ -2,7 +2,6 @@ package com.descomplica.FrameBlog.services.impl;
 
 import com.descomplica.FrameBlog.models.Comment;
 import com.descomplica.FrameBlog.services.CommentService;
-import com.descomplica.FrameBlog.services.PostService;
 import com.descomplica.FrameBlog.services.UserService;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
